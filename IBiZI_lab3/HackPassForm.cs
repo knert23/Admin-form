@@ -25,7 +25,7 @@ namespace IBiZI_lab3
         private void buttonBruteForceHack_Click(object sender, EventArgs e)
         {
             PasswordSearch passwordSearch = new PasswordSearch(loginForm);
-            double time = passwordSearch.AnalyzeBruteForceAttack(6);
+            double time = passwordSearch.AnalyzeBruteForceAttack(3);
             textBoxPass.Text = passwordSearch.FoundPassword;
             MessageBox.Show($"Среднее время перебора паролей в секунду: {time}");
         }

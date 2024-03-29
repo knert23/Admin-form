@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
 using AuthorizationForm;
@@ -95,8 +93,14 @@ namespace IBiZI_lab3
         {
             loginForm.Controls.Find("textBoxPass", false)[0].Text = result;
             (loginForm.Controls.Find("buttonLogin", false)[0] as Button).PerformClick();
-            FoundPassword = result;
-            if (result.Length == maxLength) {
+            if (loginForm.OpenformType != null)
+            {
+                FoundPassword = result;
+                return;
+            }
+
+            if (result.Length == maxLength)
+            {
                 FoundPassword = result;
             }
             else
@@ -105,6 +109,10 @@ namespace IBiZI_lab3
                 {
                     attempts++;
                     StartBruteForce(maxLength, ref attempts, result + lowerCaseLettersAndDigits[i]);
+                    if (loginForm.OpenformType != null)
+                    {
+                        break;
+                    }
                 }
             }
         }
